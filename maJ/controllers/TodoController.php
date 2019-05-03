@@ -35,13 +35,9 @@ class TodoController extends Controller
      */
     public function actionIndex()
     {
-//        $searchModel = new TodoSearch();
-        //       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $this->layout = false;
 
-        return $this->render('index', [
-            //          'searchModel' => $searchModel,
-            //        'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index');
     }
 
     /**
