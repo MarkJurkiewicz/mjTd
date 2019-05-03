@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class TodoController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
      * {@inheritdoc}
      */
@@ -51,6 +53,14 @@ class TodoController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionSave()
+    {
+        $post = Yii::$app->request->post();
+        print_r($post);
+        exit;
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
