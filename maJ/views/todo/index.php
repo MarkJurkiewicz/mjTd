@@ -21,9 +21,14 @@
         ]);
 ?>
 <div id="app">
+    <br>
+    <br>
+    <br>
     <h1>{{title}}</h1>
     <input type="text" class="nes-input" placeholder="Add something to do..." v-on:keyup.enter="addTodo" name ="todo[]">
-
+    <br>
+    <br>
+    <h6>(click the checkbox next to a ToDo to mark it as complete, and the 'X' button to remove.)</h6>
     <ul>
         <li v-for="todo in todos" :key="todo.id" class="flex">
             <label>
@@ -37,7 +42,7 @@
         </li>
     </ul>
 </div>
-<button type="submit" class="nes-btn">Save</button>
+<!--<button type="submit" class="nes-btn">Save</button>-->
 <?php $form = ActiveForm::end(); ?>
 
 </body>
@@ -49,14 +54,14 @@
         data: {
             title: 'ToDos before Sunset',
             todos: [
-                {text: '', done: false, id: Date.now()},
-                // {text: 'todo 2', done: false, id: Date.now() + 1}
+                {text: 'Get to the beach', done: false, id: Date.now()},
+                {text: 'Watch the daylight fade', done: false, id: Date.now() + 1}
             ]
         },
         methods: {
             addTodo({target}) {
                 const text = event.target.value
-                this.todos.push({text: target.value, done: false, id: Date.now()})
+                this.todos.unshift({text: target.value, done: false, id: Date.now()})
                 event.target.value = ''
             },
             removeTodo(id) {
@@ -71,8 +76,8 @@
 
 <style>
     @keyframes example {
-        from {background-color: blue;}
-        to {background-color: yellow;}
+        from {background-color: lightblue;}
+        to {background-color: orange;}
     }
 
     div {
@@ -87,6 +92,7 @@
 
     body {
         background: lightblue url("../src/img/capo.JPG");
+        background-size: 100%;
     }
 
 </style>
