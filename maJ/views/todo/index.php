@@ -12,6 +12,7 @@
     <link href="https://unpkg.com/nes.css@2.1.0/css/nes.min.css" rel="stylesheet" />
 </head>
 <body>
+<div class="container">
 <?php $form = ActiveForm::begin([
             'action' => 'index.php?r=todo/save',
             'options' => [
@@ -25,14 +26,16 @@
     <br>
     <br>
     <h1>{{title}}</h1>
+    <label>
     <input type="text" class="nes-input" placeholder="Add something to do..." v-on:keyup.enter="addTodo" name ="todo[]">
+    </label>
     <br>
     <br>
     <h6>(click the checkbox next to a ToDo to mark it as complete, and the 'X' button to remove.)</h6>
     <ul>
         <li v-for="todo in todos" :key="todo.id" class="flex">
-            <label>
-                <input type="checkbox" class="nes-checkbox" v-model="todo.done">
+            <label class="list">
+                <input type="checkbox" id="check" class="nes-checkbox" v-model="todo.done">
                 <span>&nbsp</span>
             </label>
             <del v-if="todo.done">{{ todo.text }}</del>
@@ -44,7 +47,7 @@
 </div>
 <!--<button type="submit" class="nes-btn">Save</button>-->
 <?php $form = ActiveForm::end(); ?>
-
+</div>
 </body>
 </html>
 
@@ -75,24 +78,38 @@
 </script>
 
 <style>
-    @keyframes example {
-        from {background-color: lightblue;}
-        to {background-color: orange;}
+    @keyframes capo {
+        0% {
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        60% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+        }
     }
 
     div {
         /*width: 100px;*/
         /*height: 100px;*/
-        background-color: blue;
-        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-        -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
-        animation-name: example;
-        animation-duration: 10s;
+        -webkit-animation-name: capo; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+        animation-name: capo;
+        animation-duration: 1s;
     }
 
     body {
-        background: lightblue url("../src/img/capo.JPG");
+        margin-left: 30px;
+        color:white;
+        background: url("../src/img/capo.JPG");
         background-size: 100%;
+    }
+
+    .list {
+        background: burlywood;
     }
 
 </style>
